@@ -20,7 +20,7 @@ class Var(object):
     WORKERS = int(getenv('WORKERS', '4'))
     BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002005906539'))
     NEW_USER_LOG = int(getenv('NEW_USER_LOG', '-1002005906539'))
-    PORT = int(getenv('PORT', '8080'))
+    PORT = int(getenv('PORT', '9005'))
     BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
     PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
     OWNER_ID = [int(x) for x in os.environ.get("OWNER_ID", "949657126").split()]
@@ -33,12 +33,12 @@ class Var(object):
     
     else:
         ON_HEROKU = False
-    FQDN = str(getenv('FQDN', 'BIND_ADRESS:PORT')) if not ON_HEROKU or getenv('FQDN', '') else APP_NAME+'.herokuapp.com'
+    FQDN = str(getenv('FQDN', 'BIND_ADRESS:PORT')) if not ON_HEROKU or getenv('FQDN', 'bots.hostingup.icu:9005/') else APP_NAME+'.herokuapp.com'
     HAS_SSL=bool(getenv('HAS_SSL',True))
     if HAS_SSL:
-        URL = "https://{}/".format(FQDN)
+        URL = "bots.hostingup.icu:9005/".format(FQDN)
     else:
-        URL = "http://{}/".format(FQDN)
+        URL = "bots.hostingup.icu:9005/".format(FQDN)
     DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://primebaby11220:TuGa0I5ZsiC8mp5A@cluster0.df4rivj.mongodb.net/?retryWrites=true&w=majority'))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', 'Movie_loverzz')) 
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split()))   
